@@ -1,4 +1,4 @@
-window.addEventListener('load', () => {
+window.addEventListener('load', function() {
   const canvas = document.getElementById('canvas1');
   // ctx = context (instance of built-in canvase 2d api that holds all drawing methods and properties we will need to animate our game)
   const ctx = canvas.getContext('2d');
@@ -70,9 +70,8 @@ window.addEventListener('load', () => {
 
   const input = new InputHandler();
   const player = new Player(canvas.width, canvas.height);
+  player.draw(ctx);
   
-
-
   function animate() {
     ctx.clearRect(0,0, canvas.width, canvas.height)
     player.draw(ctx);
