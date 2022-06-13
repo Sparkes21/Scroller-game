@@ -148,6 +148,7 @@ window.addEventListener('load', function() {
   let enemyTimer = 0;
   let enemyInterval = 1000;
   let randomEnemyInterval = Math.random() * 1000 + 500;
+   
 
   function animate(timeStamp) {
     const deltaTime = timeStamp - lastTime;
