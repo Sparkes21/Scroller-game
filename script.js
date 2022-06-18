@@ -1,4 +1,4 @@
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
   const canvas = document.getElementById('canvas1');
   // ctx = context (instance of built-in canvase 2d api that holds all drawing methods and properties we will need to animate our game)
   const ctx = canvas.getContext('2d');
@@ -12,20 +12,20 @@ window.addEventListener('load', function() {
     constructor() {
       this.keys = [];
       window.addEventListener('keydown', (e) => {
-        if (( e.key === 'ArrowDown' || 
-              e.key === 'ArrowUp' || 
-              e.key === 'ArrowLeft' || 
-              e.key === 'ArrowRight') 
-              && this.keys.indexOf(e.key) === -1) {
+        if ((e.key === 'ArrowDown' ||
+          e.key === 'ArrowUp' ||
+          e.key === 'ArrowLeft' ||
+          e.key === 'ArrowRight')
+          && this.keys.indexOf(e.key) === -1) {
           this.keys.push(e.key);
         }
       });
       window.addEventListener('keyup', (e) => {
-        if (  e.key === 'ArrowDown' || 
-              e.key === 'ArrowUp' || 
-              e.key === 'ArrowLeft' || 
-              e.key === 'ArrowRight') {
-            this.keys.splice(this.keys.indexOf(e.key), 1) ;
+        if (e.key === 'ArrowDown' ||
+          e.key === 'ArrowUp' ||
+          e.key === 'ArrowLeft' ||
+          e.key === 'ArrowRight') {
+          this.keys.splice(this.keys.indexOf(e.key), 1);
         }
       });
     }
@@ -45,7 +45,7 @@ window.addEventListener('load', function() {
       this.frameY = 0;
       this.fps = 20;
       this.frameTimer = 0;
-      this.frameInterval = 1000/this.fps;
+      this.frameInterval = 1000 / this.fps;
       this.speed = 0;
       this.vy = 0;
       this.weight = 1;
@@ -56,10 +56,10 @@ window.addEventListener('load', function() {
     update(input, deltaTime, enemies) {
       //collision detection
       enemies.forEach(enemy => {
-        const dx = (enemy.x + enemy.width/2) - (this.x + this.width/2);
-        const dy = (enemy.y + enemy.height/2) - (this.y + this.height/2);
-        const distance = Math.sqrt(dx* dx + dy * dy);
-        if (distance < enemy.width/2 + this.width/2) {
+        const dx = (enemy.x + enemy.width / 2) - (this.x + this.width / 2);
+        const dy = (enemy.y + enemy.height / 2) - (this.y + this.height / 2);
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < enemy.width / 2 + this.width / 2) {
           gameOver = true;
         }
       })
@@ -71,7 +71,6 @@ window.addEventListener('load', function() {
       } else {
         this.frameTimer += deltaTime;
       }
-     
       // controls
       if (input.keys.indexOf('ArrowRight') > -1) {
         this.speed = 5;
@@ -99,7 +98,7 @@ window.addEventListener('load', function() {
       }
       if (this.y > this.gameHeight - this.height) this.y = this.gameHeight - this.height
     }
-    onGround(){
+    onGround() {
       return this.y >= this.gameHeight - this.height
     }
   };
@@ -139,7 +138,7 @@ window.addEventListener('load', function() {
       this.maxFrame = 5;
       this.fps = 20;
       this.frameTimer = 0;
-      this.frameInterval = 1000/this.fps;
+      this.frameInterval = 1000 / this.fps;
       this.speed = 8;
       this.markedForDeletion = false;
     }
@@ -147,8 +146,7 @@ window.addEventListener('load', function() {
       context.drawImage(this.image, this.frameX * this.width, 0, this.width, this.height, this.x, this.y, this.width, this.height)
     }
     update(deltaTime) {
-      if (this.frameTimer > this.frameInterval){
-        
+      if (this.frameTimer > this.frameInterval) {
         if (this.frameX >= this.maxFrame) this.frameX = 0;
         else this.frameX++;
         this.frameTimer = 0;
@@ -161,8 +159,6 @@ window.addEventListener('load', function() {
         score++;
       }
     }
-
-  
   };
 
   function handleEnemies(deltaTime) {
@@ -186,15 +182,13 @@ window.addEventListener('load', function() {
     context.fillText('Score: ' + score, 20, 50);
     context.fillStyle = 'white';
     context.fillText('Score: ' + score, 22, 52);
-    if (gameOver){
+    if (gameOver) {
       context.textAlign = 'center';
       context.fillStyle = 'black';
-      context.fillText('GameOver try again!', canvas.width/2, 200);
+      context.fillText('GameOver try again!', canvas.width / 2, 200);
       context.fillStyle = 'white';
-      context.fillText('GameOver try again!', canvas.width/2, 202);
-
+      context.fillText('GameOver try again!', canvas.width / 2, 202);
     }
-
   };
 
   const input = new InputHandler();
@@ -205,13 +199,12 @@ window.addEventListener('load', function() {
   let enemyTimer = 0;
   let enemyInterval = 1000;
   let randomEnemyInterval = Math.random() * 1000 + 500;
-   
 
   function animate(timeStamp) {
     const deltaTime = timeStamp - lastTime;
     lastTime = timeStamp;
 
-    ctx.clearRect(0,0, canvas.width, canvas.height)
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
     background.draw(ctx);
     //background.update();
     player.draw(ctx);
@@ -221,5 +214,4 @@ window.addEventListener('load', function() {
     if (!gameOver) requestAnimationFrame(animate);
   };
   animate(0);
-
 });
