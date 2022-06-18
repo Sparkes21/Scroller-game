@@ -194,12 +194,18 @@ window.addEventListener('load', function() {
 
   function displayStatusText(context) {
     context.font = '40px Helvetica';
-
     context.fillStyle = 'black';
     context.fillText('Score: ' + score, 20, 50);
-
     context.fillStyle = 'white';
     context.fillText('Score: ' + score, 22, 52);
+    if (gameOver){
+      context.textAlign = 'center';
+      context.fillStyle = 'black';
+      context.fillText('GameOver try again!', canvas.width/2, 200);
+      context.fillStyle = 'white';
+      context.fillText('GameOver try again!', canvas.width/2, 202);
+
+    }
 
   };
 
