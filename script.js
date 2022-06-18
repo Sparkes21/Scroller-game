@@ -52,6 +52,8 @@ window.addEventListener('load', function() {
     draw(context) {
       //context.fillStyle = 'white';
       //context.fillRect(this.x, this.y, this.width, this.height);
+      context.strokeStyle = 'white';
+      context.strokeRect(this.x, this.y, this.width, this.height);
       context.drawImage(this.image, this.frameX * this.width, this.frameY * this.height, this.width, this.height, this.x, this.y, this.width, this.height);
     }
     update(input, deltaTime) {
@@ -136,6 +138,8 @@ window.addEventListener('load', function() {
       this.markedForDeletion = false;
     }
     draw(context) {
+      context.strokeStyle = 'white';
+      context.strokeRect(this.x, this.y, this.width, this.height);
       context.drawImage(this.image, this.frameX * this.width, 0, this.width, this.height, this.x, this.y, this.width, this.height)
     }
     update(deltaTime) {
@@ -173,9 +177,14 @@ window.addEventListener('load', function() {
   };
 
   function displayStatusText(context) {
-    context.fillStyle = 'black';
     context.font = '40px Helvetica';
+
+    context.fillStyle = 'black';
     context.fillText('Score: ' + score, 20, 50);
+
+    context.fillStyle = 'white';
+    context.fillText('Score: ' + score, 22, 52);
+
   };
 
   const input = new InputHandler();
